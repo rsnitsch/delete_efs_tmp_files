@@ -32,7 +32,7 @@ def detect_efs_tmp_files(directory, quiet):
     regexp = re.compile("EFS[0-9]+\.TMP")
     for root, dirs, files in os.walk(directory):
         try:
-            if not args.quiet:
+            if not quiet:
                 print("Current folder: " + root)
             for f in files:
                 if regexp.match(f):
@@ -57,7 +57,7 @@ def main(argv):
         return 1
 
     print("Searching for EFS tmp files...")
-    files = detect_efs_tmp_files(argv[1], args)
+    files = detect_efs_tmp_files(argv[1], args.quiet)
 
     if files:
         print("The following EFS tmp files have been detected:")
